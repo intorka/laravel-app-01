@@ -24,9 +24,14 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>
-                                    @for($i = 0; $i < count($user->departments); $i++)
-                                        {{ $user->departments[$i]->name }} => {{ $user->roles[$i]->name }}<br> 
-                                    @endfor
+                                    @if ($user->user_roles->count() > 0)
+                                        
+                                        @for ($i = 0; $i < $user->user_roles->count(); $i++)
+                                            {{$user->user_departments[$i]->name}}
+                                            {{$user->user_roles[$i]->name}} <br>
+                                        @endfor
+                                        
+                                    @endif
 
                                 </td>
 

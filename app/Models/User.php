@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Category;
+use App\Models\Department;
+use App\Models\Role;
+use App\Models\User_Department_Role;
+
 
 class User extends Authenticatable
 {
@@ -63,9 +67,15 @@ class User extends Authenticatable
         return $this->hasMany(Role::class, 'created_by', 'id');
     }
 
-    protected function role_departments() {
+    public function user_roles() {
 
-        return $this->hasMany(Role_Department::class, 'user_id', 'id');
+        return $this->belongsToMany(Role::class, User_Department_Role::class, 'user_id', 'role_id');
     }
+
+    public function user_departments() {
+
+        return $this->belongsToMany(Department::class, User_Department_Role::class, 'user_id', 'department_id');
+    }
+
     
 }

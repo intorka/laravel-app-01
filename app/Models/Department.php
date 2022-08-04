@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\User_Department_Role;
 
 class Department extends Model
 {
@@ -18,9 +20,14 @@ class Department extends Model
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
-    public function role_departments() {
+    public function department_users() {
 
-        return $this->hasMany(Role_Department::class, 'department_id', 'id');
+        return $this->belongsToMany(User::class, User_Department_Role::class, 'department_id', 'user_id');
+    }
+
+    public function department_roles() {
+
+        return $this->belongsToMany(User::class, User_Department_Role::class, 'department_id', 'role_id');
     }
 
 }
