@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('user') }}</div>
+                <div class="card-header">{{ __('Roles') }}</div>
                 
                 <div class="card-body">
                     <table>
@@ -13,24 +13,17 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Department Roles</th>
+                                <th>Created by</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
-                            {{-- @dd($users, $user->departments, $user->roles) --}}
+                            @foreach($roles as $role)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>
-                                    @for($i = 0; $i < count($user->departments); $i++)
-                                        {{ $user->departments[$i]->name }} => {{ $user->roles[$i]->name }}<br> 
-                                    @endfor
-
-                                </td>
-
-                                <td><a href="{{ route('user.show', $user->id) }}">View</a></td>
+                                <td>{{ $role->id }}</td>
+                                <td>{{ $role->name }}</td>
+                                <td>{{ $role->user->name }}</td>
+                                <td><a href="{{ route('role.show', $role->id) }}">View</a></td>
                             </tr>
                             @endforeach
                         </tbody>

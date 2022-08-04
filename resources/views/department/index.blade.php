@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('user') }}</div>
+                <div class="card-header">{{ __('Department') }}</div>
                 
                 <div class="card-body">
                     <table>
@@ -13,24 +13,18 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Department Roles</th>
+                                <th>Created By</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
-                            {{-- @dd($users, $user->departments, $user->roles) --}}
+                            @foreach($departments as $department)
+                            {{-- @dd($departments, $department->departments, $department->roles) --}}
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>
-                                    @for($i = 0; $i < count($user->departments); $i++)
-                                        {{ $user->departments[$i]->name }} => {{ $user->roles[$i]->name }}<br> 
-                                    @endfor
-
-                                </td>
-
-                                <td><a href="{{ route('user.show', $user->id) }}">View</a></td>
+                                <td>{{ $department->id }}</td>
+                                <td>{{ $department->name }}</td>
+                                <td>{{ $department->user->name }}</td>
+                                <td><a href="{{ route('department.show', $department->id) }}">View</a></td>
                             </tr>
                             @endforeach
                         </tbody>

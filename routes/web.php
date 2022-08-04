@@ -11,7 +11,7 @@ use App\Http\Controllers\RoleController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.welcome');
 });
 
 Auth::routes();
@@ -28,7 +28,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 Route::get('users', [UserController::class, 'index'])->name('user.index');
 Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
 
-Route::get('departments', [DepartmentsController::class, 'index'])->name('department.index');
+Route::get('departments', [DepartmentController::class, 'index'])->name('department.index');
 Route::get('department/{id}', [DepartmentController::class, 'show'])->name('department.show');
 
 Route::get('roles', [RoleController::class, 'index'])->name('role.index');
